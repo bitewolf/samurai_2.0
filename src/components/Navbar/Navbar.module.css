@@ -2,7 +2,7 @@
   color: white;
 }
 
-.item.active {
+.item a.active {
   color: goldenrod
 }
 
@@ -10,3 +10,8 @@
     grid-area: n;
     background-color: aquamarine;
   }
+
+a {
+  text-decoration: none;
+  color: white;
+}

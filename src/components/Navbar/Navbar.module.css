@@ -11,7 +11,8 @@
     background-color: aquamarine;
   }
 
-a {
+.nav a {
   text-decoration: none;
-  color: white;
+  color: darkred;
+  font-weight: 500;
 }

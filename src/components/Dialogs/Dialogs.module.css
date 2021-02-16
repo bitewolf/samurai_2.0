@@ -11,10 +11,13 @@
     padding: 10px;
 }
 
-.dialog.active {
-    color: goldenrod;
+.dialog a {
+    color: darkslategrey
 }
 
+.dialog a.active {
+    color: goldenrod;
+}
 /* .messages {
 
 }

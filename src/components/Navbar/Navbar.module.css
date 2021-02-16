@@ -16,3 +16,22 @@
   color: darkred;
   font-weight: 500;
 }
+
+.avatar {
+  width: 40px;
+  border-radius: 20px;
+}
+
+.sidebar .tag {
+  display: flex;
+  justify-content: center;
+}
+
+.friends {
+  display: flex;
+  justify-content: space-around;
+}
+
+.friend {
+  padding: 5px;
+}

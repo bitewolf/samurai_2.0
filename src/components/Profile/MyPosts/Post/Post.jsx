@@ -9,8 +9,6 @@ const Post = (props) => {
                 <span> лукасы</span>
                 <span> {props.likesCount}</span>
             </div>
-            
-
     )
 }
 

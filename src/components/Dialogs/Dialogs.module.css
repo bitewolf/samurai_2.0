@@ -19,9 +19,24 @@
 .dialog a.active {
     color: goldenrod;
 }
-/* .messages {
-
+.messages {
+    width: 150px;
 }
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+textarea {
+    width: 150px;
+    padding: 0;
+    border: none;
+}
+
+button {
+    width: 75px;
+}
+
+/* 
 
 .message {
 

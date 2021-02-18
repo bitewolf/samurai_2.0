@@ -12,7 +12,7 @@ let addPost = () => {
 
 let onPostChange = () => {
     let text = newPostElement.current.value
-    props.updNewPostText (text)
+    props.updNewPostText(text)
 }
 
  return (

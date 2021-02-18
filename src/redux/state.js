@@ -42,13 +42,13 @@ export const addPost = () => {
       id: 5, message: state.profilePage.newPostText, likesCount: 23.34
     }
     state.profilePage.postData.push(newPost)
-    state.profilePage.postData.newPostText = ''
-    rerenderEntireTree(state)
+    state.profilePage.newPostText = ''
+    rerenderEntireTree()
 }
 
 export const updNewPostText = (newText) => {
     state.profilePage.newPostText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const subscribe = (observer) => {

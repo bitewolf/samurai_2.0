@@ -8,6 +8,7 @@ import {addPost, updNewPostText} from './redux/state'
 
 
 let rerenderEntireTree = () => {
+  
     ReactDOM.render(
       <React.StrictMode>
         <App state={state} addPost={addPost} updNewPostText={updNewPostText}/>

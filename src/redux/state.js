@@ -52,7 +52,7 @@ export const updNewPostText = (newText) => {
 }
 
 export const subscribe = (observer) => {
-  rerenderEntireTree = observer
+  rerenderEntireTree = observer   
 }
 
 export default state

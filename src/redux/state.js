@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_TEXT_POST = 'UPDATE-NEW-TEXT-POST'
-const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE-NEW-MASSAGE-TEXT'
-const SEND_MESSAGE = 'SEND-MESSAGE'
+import dialogsReducer from "./dialogs-reducer"
+import profileReducer from "./profile-reducer"
+import sidebarReducer from "./sidebar-reducer"
 
 let store = {
   _state: {
@@ -47,36 +46,13 @@ let store = {
     this._callSubsriber = observer   
   },
   dispatch (action) {
-    
-      if (action.type === ADD_POST) {
-        
-        let newPost = {
-          id: 5, message: this._state.profilePage.newPostText, likesCount: 23.34
-        }
-        this._state.profilePage.postData.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubsriber(this._state)
-      } else if (action.type === UPDATE_NEW_TEXT_POST) {
-        this._state.profilePage.newPostText = action.newText
-        this._callSubsriber(this._state)
-      } else if (action.type === UPDATE_NEW_MASSAGE_TEXT) {
-        this._state.messagesPage.newMessageText = action.newMessageText
-        this._callSubsriber(this._state)
-      } else if (action.type === SEND_MESSAGE) {
-        let newMessageText = this._state.messagesPage.newMessageText
-        this._state.messagesPage.newMessageText = ''
-        this._state.messagesPage.messagesData.push({id: 6, message: newMessageText})
-        this._callSubsriber(this._state)
-        
-      }
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    this._state.messagesPage = dialogsReducer(this._state.messagesPage, action)
+    this._state.navbarPage = sidebarReducer(this._state.navbarPage, action)
+    this._callSubsriber(this._state)  
   }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_TEXT_POST, newText: text})
-
-export const sendMessageCreator = () => ({type: SEND_MESSAGE})
-export const updatenewMessageTextCreator = (newMessageText) => ({type: UPDATE_NEW_MASSAGE_TEXT, newMessageText: newMessageText})
 
 export default store
 window.store = store

@@ -3,6 +3,7 @@ import profileReducer from "./profile-reducer"
 import sidebarReducer from "./sidebar-reducer"
 
 let store = {
+  
   _state: {
     profilePage: {
         postData: [

@@ -4,14 +4,12 @@ import s from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import store from './../../redux/redux-store'
 
-const Profile = (props) => {
-    
-    let state = props.store.getState()
-    
+const Profile = () => {
+      
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPostsContainer store={state}  postData = {state.profilePage.postData} newPostText = {state.profilePage.newPostText} dispatch={props.store.dispatch}/>
+            <MyPostsContainer/>
             
         </div>
     )

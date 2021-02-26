@@ -10,7 +10,7 @@ import News from './News'
 import Settings from './Settings'
 
 
-const App = (props) => {
+const App = () => {
   
   return (
     

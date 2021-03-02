@@ -4,6 +4,7 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../red
 import MyPosts from './MyPosts'
 
 
+
 const mapStateToProps = (state) => {
     return {
         postData: state.profilePage.postData,

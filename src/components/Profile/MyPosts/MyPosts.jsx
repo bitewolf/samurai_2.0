@@ -3,8 +3,8 @@ import Post from './Post/Post'
 import React from 'react'
 
 const MyPosts = (props) => {
-    debugger
-let postsElements = props.postData.map ( p => <Post message={p.message} likesCount={p.likesCount} />)
+    
+let postsElements = props.postData.map ( p => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>)
 let newPostElement = React.createRef()
 
 let onAddPost = () => {

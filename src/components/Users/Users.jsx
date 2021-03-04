@@ -13,7 +13,8 @@ let Users = (props) => {
     }
     
     
-    return <div>
+    return (
+    <div>
         {
             props.users.map( u => <div key={u.id}>
                 <span>
@@ -22,8 +23,8 @@ let Users = (props) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button onClick={() => {props.unfollow(u.id)}}>Unfollowed</button>
-                            : <button onClick={() => {props.follow(u.id)}}>Followed</button>}
+                            ? <button onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
+                            : <button onClick={() => {props.follow(u.id)}}>Follow</button>}
                     </div>
                 </span>
                 <span>
@@ -37,6 +38,7 @@ let Users = (props) => {
             </div>)
         }
     </div>
+    )
 }
 
 export default Users

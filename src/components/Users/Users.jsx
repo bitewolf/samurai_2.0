@@ -1,25 +1,27 @@
+import axios from 'axios'
 import React from 'react'
 import styles from './users.module.css'
+import userPhoto from './../../assets/images/user.jpg'
 
 let Users = (props) => {
-    if (props.users.length === 0) {
-        props.setUsers ( [
-        {id: 1, photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4KWIKwaojpneN3qgoL7Ec2xT4EcwjbQ8ImQ&usqp=CAU', followed: false, fullName:'Dmitry', status: 'I am boss', location: {city: 'Minsk', country: 'BLR'}},
-        {id: 2, photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4KWIKwaojpneN3qgoL7Ec2xT4EcwjbQ8ImQ&usqp=CAU', followed: true, fullName:'Andrey', status: 'I am boss 2', location: {city: 'Braslav', country: 'BLR'}},
-        {id: 3, photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4KWIKwaojpneN3qgoL7Ec2xT4EcwjbQ8ImQ&usqp=CAU', followed: false, fullName:'Petya', status: 'I am boss 3', location: {city: 'Piter', country: 'RU'}},
-        {id: 4, photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4KWIKwaojpneN3qgoL7Ec2xT4EcwjbQ8ImQ&usqp=CAU', followed: true, fullName:'Vitaly', status: 'I am boss 4', location: {city: 'Vinnica', country: 'UA'}}
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then (response => {
+                props.setUsers(response.data.items)
+            })
     
-        ])
-    }
-    
+        }
+    }    
     
     return (
     <div>
+        <button onClick={getUsers}>Get Users</button>
         {
             props.users.map( u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photoUrl} className={styles.usersPhoto}/>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.usersPhoto}/>
                     </div>
                     <div>
                         {u.followed
@@ -29,10 +31,10 @@ let Users = (props) => {
                 </span>
                 <span>
                     <span>
-                        <div>{u.fullName}</div><div>{u.status}</div>
+                        <div>{u.name}</div><div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.city}</div><div>{u.location.country}</div>
+                        <div>{u.id}</div><div>{'u.location.country'}</div>
                     </span>
                 </span>
             </div>)

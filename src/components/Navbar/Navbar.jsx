@@ -5,7 +5,6 @@ import Sidebar from './Sidebar/Sidebar'
 const Navbar = (props) => {
     
     return (
-        
         <div>
             <nav className={s.nav}>
                 <div className={`${s.item} ${s.active}`}>

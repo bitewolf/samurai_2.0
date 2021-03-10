@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './users.module.css'
 import userPhoto from './../../assets/images/user.jpg'
 import { NavLink } from 'react-router-dom'
-import axios from 'axios'
 import { usersAPI } from '../../api/api'
 
 let Users = (props) => {
@@ -34,24 +33,28 @@ let Users = (props) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => {
+                                ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                    
+                                    props.toggleFollowingProgress(true, u.id)
                                     usersAPI.unfollowUsers(u.id)
                                     .then (data => {
                                        if (data.resultCode == 0) {
                                             props.unfollow(u.id)
                                        }
-                                        
+                                       props.toggleFollowingProgress(false, u.id)  
                                     })
                                 
                                 }}>Unfollow</button>
 
-                                : <button onClick={() => {
+                                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                    
+                                    props.toggleFollowingProgress(true, u.id)
                                     usersAPI.followUsers(u.id)
                                     .then (data => {
                                        if (data.resultCode == 0) {
                                             props.follow(u.id)
                                        }
-                                        
+                                       props.toggleFollowingProgress(false, u.id)
                                     })
                                     
                                     

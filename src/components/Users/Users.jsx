@@ -3,6 +3,7 @@ import styles from './users.module.css'
 import userPhoto from './../../assets/images/user.jpg'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
+import { usersAPI } from '../../api/api'
 
 let Users = (props) => {
     
@@ -13,7 +14,7 @@ let Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
+    
      return <div>
             <div>
                 {pages.map(p => {
@@ -21,7 +22,10 @@ let Users = (props) => {
                 })}
             </div>
             {
-                props.users.map( u => <div key={u.id}>
+                props.users.map( u => {
+                    
+                    return(<div key={u.id}>
+                    
                     <span>
                         <div>
                             <NavLink to={'/profile/' + u.id}>
@@ -31,13 +35,9 @@ let Users = (props) => {
                         <div>
                             {u.followed
                                 ? <button onClick={() => {
-
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: {"API-KEY": "4680416d-3047-4d9b-afcc-e761f9d399f7"}
-                                })
-                                    .then (response => {
-                                       if (response.data.resultCode == 0) {
+                                    usersAPI.unfollowUsers(u.id)
+                                    .then (data => {
+                                       if (data.resultCode == 0) {
                                             props.unfollow(u.id)
                                        }
                                         
@@ -46,11 +46,9 @@ let Users = (props) => {
                                 }}>Unfollow</button>
 
                                 : <button onClick={() => {
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {withCredentials: true,
-                                    headers: {"API-KEY": "4680416d-3047-4d9b-afcc-e761f9d399f7"}
-                                })
-                                    .then (response => {
-                                       if (response.data.resultCode == 0) {
+                                    usersAPI.followUsers(u.id)
+                                    .then (data => {
+                                       if (data.resultCode == 0) {
                                             props.follow(u.id)
                                        }
                                         
@@ -68,7 +66,7 @@ let Users = (props) => {
                             <div>{u.id}</div><div>{'u.location.country'}</div>
                         </span>
                     </span>
-                </div>)
+                </div>)})
             }
         </div>
         

@@ -10,7 +10,6 @@ let rerenderEntireTree = (state) => {
   
     ReactDOM.render(
       <React.StrictMode>
-        {/* <App store={store} /> */}
         <Provider store={store}>
         <App />
         </Provider>

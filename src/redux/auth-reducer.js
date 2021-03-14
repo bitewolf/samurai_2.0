@@ -1,7 +1,6 @@
 import { authAPI } from "../api/api"
 
 const SET_USER_DATA = 'SET_USER_DATA'
-const SEND_MESSAGE = 'SEND-MESSAGE'
 
 let initialState = {
     userID: null,

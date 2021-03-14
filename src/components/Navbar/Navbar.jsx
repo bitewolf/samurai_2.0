@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
 import s from './Navbar.module.css'
-import Sidebar from './Sidebar/Sidebar'
 
 const Navbar = (props) => {
     

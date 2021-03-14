@@ -12,10 +12,10 @@ const ProfileInfo = (props) => {
             <img src='https://drifterplanet.com/wp-content/uploads/2017/12/Cancun-Private-Beach-Party.jpg'></img>
             </div> */}
             <div>
-                <img src={props.profile.photos.large}></img><br></br>
+                <img src={props.profile.photos.large} alt="текст"></img><br></br>
                 <span>{props.profile.aboutMe}</span><br></br>
                 <span>{props.profile.fullName}</span>
-                <ProfileStatus status={'status'} />
+                <ProfileStatus status={props.status} />
             </div>
         </div>
     )

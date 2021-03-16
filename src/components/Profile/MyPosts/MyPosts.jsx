@@ -1,6 +1,7 @@
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import React from 'react'
+import { Form, Field } from 'react-final-form'
 
 const MyPosts = (props) => {
     
@@ -16,19 +17,35 @@ let onPostChange = () => {
     props.updateNewPostText(text)
 }
 
- return (
+const onSubmit = (e) => {
+    console.log(e)
+}
+
+  return (
         <div>
-        My posts
-        <div>
-            <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}></textarea>
-            <div className={s.buttons}>
-                <button onClick = {onAddPost}>Add post</button>
-                <button>remove</button>
+            My posts
+            <div>
+                <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}></textarea>
+                <div className={s.buttons}>
+                    <button onClick = {onAddPost}>Add post</button>
+                    <button>remove</button>
+                </div>
             </div>
-        </div>
-        <div className={s.posts}>
-            {postsElements}
-        </div>
+            <div className={s.posts}>
+                {postsElements}
+            </div>
+
+            FORM
+                <Form onSubmit={onSubmit}
+                    render={({ handleSubmit })=>(
+                        <form onSubmit={handleSubmit}>
+                            <Field name='login' component='input' placeholder='login'/>
+                            <button type='submit'>submit</button>
+                        </form>
+                    )}
+                
+                
+                />
         </div>
     )
 }

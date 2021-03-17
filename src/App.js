@@ -8,7 +8,7 @@ import ProfileContainer from './components/Profile/ProfileContainer'
 import UsersContainer from './components/Users/UsersContainer'
 import Music from './Music'
 import News from './News'
-import Settings from './Settings'
+import Settings from './../src/components/Setting/Setting'
 
 
 const App = () => {

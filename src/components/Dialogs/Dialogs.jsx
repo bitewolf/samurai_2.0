@@ -13,24 +13,19 @@ const Dialogs = (props) => {
         props.sendMessage()
     }
 
-
     const formik = useFormik({
         initialValues: {
             message: 'new message'
         },
         onSubmit: values => {
-            // let newMessageText = values.message
-            // props.updatenewMessageTextCreator(newMessageText)
+
         }
     })
 
     const onChange = (e) => {
-        
         formik.handleChange(e)
-        console.log(formik.values.message)
         props.updatenewMessageTextCreator(formik.values.message)
     }
-
 
     if (!props.isAuth) return <Redirect to={"/login"} />
 

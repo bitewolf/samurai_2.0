@@ -1,51 +1,46 @@
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import React from 'react'
-import { Form, Field } from 'react-final-form'
+import { useFormik } from 'formik'
 
 const MyPosts = (props) => {
     
 let postsElements = props.postData.map ( p => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>)
-let newPostElement = React.createRef()
 
 let onAddPost = () => {
     props.addPost()
 }
 
-let onPostChange = () => {
-    let text = newPostElement.current.value
-    props.updateNewPostText(text)
+const formik = useFormik({
+    initialValues: {
+        postText: 'new post'
+    },
+    onSubmit: values => {
+    }
+})
+
+const onChange = (e) => {
+    
+    formik.handleChange(e)
+    props.updateNewPostText(formik.values.postText)
 }
 
-const onSubmit = (e) => {
-    console.log(e)
-}
 
   return (
         <div>
             My posts
             <div>
-                <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}></textarea>
-                <div className={s.buttons}>
-                    <button onClick = {onAddPost}>Add post</button>
-                    <button>remove</button>
-                </div>
+                <form onSubmit={formik.handleSubmit}>
+                    <input type = 'text' id='postText' name='postText' onChange={onChange} value={formik.values.postText}/>
+                        <div className={s.buttons}>
+                                <button type = 'submit' onClick = {onAddPost}>Add post</button>
+                                <button type = 'button'>Remove</button>
+                        </div>
+                    </form>
             </div>
             <div className={s.posts}>
                 {postsElements}
-            </div>
-
-            FORM
-                <Form onSubmit={onSubmit}
-                    render={({ handleSubmit })=>(
-                        <form onSubmit={handleSubmit}>
-                            <Field name='login' component='input' placeholder='login'/>
-                            <button type='submit'>submit</button>
-                        </form>
-                    )}
-                
-                
-                />
+            </div>  
         </div>
     )
 }

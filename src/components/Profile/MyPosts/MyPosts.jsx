@@ -1,19 +1,25 @@
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import React from 'react'
+import validate from './../../../utils/validators/validatorsJax'
 import { useFormik } from 'formik'
 
 const MyPosts = (props) => {
     
 let postsElements = props.postData.map ( p => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>)
 
+const initialValues = {
+    postText: 'new post'
+}
+
+const onSubmit = values => {
+    props.addPost(values.postText)
+}
+
 const formik = useFormik({
-    initialValues: {
-        postText: 'new post'
-    },
-    onSubmit: values => {
-        props.addPost(values.postText)
-    }
+    initialValues,
+    onSubmit,
+    validate
 })
 
 
@@ -22,12 +28,15 @@ const formik = useFormik({
             My posts
             <div>
                 <form onSubmit={formik.handleSubmit}>
-                    <input type = 'text' id='postText' name='postText' onChange={formik.handleChange} value={formik.values.postText}/>
-                        <div className={s.buttons}>
-                                <button type = 'submit'>Add post</button>
-                                <button type = 'button'>Remove</button>
-                        </div>
-                    </form>
+                    <div>
+                        <input type = 'text' id='postText' name='postText' onChange={formik.handleChange} value={formik.values.postText}/>
+                        {formik.errors.postText ? <div className={s.errors}>{formik.errors.postText}</div> : null}
+                    </div>
+                    <div className={s.buttons}>
+                        <button type = 'submit'>Add post</button>
+                        <button type = 'button'>Remove</button>
+                    </div>
+                </form>
             </div>
             <div className={s.posts}>
                 {postsElements}

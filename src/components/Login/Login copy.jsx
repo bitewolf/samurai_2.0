@@ -1,10 +1,9 @@
 import { useFormik } from 'formik'
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { login } from '../../redux/auth-reducer'
 
-const Login = (props) => {
+const LoginForm = (props) => {
 
     const initialValues = {
         email: '',
@@ -14,20 +13,13 @@ const Login = (props) => {
 
     const onSubmit = values => {
         console.log(values)
-        props.login (formik.values.email, formik.values.password, formik.values.rememberMe)
     }
 
     const formik = useFormik({
         initialValues,
         onSubmit
     })
-
-    if (props.isAuth) {
-        return <Redirect to={'/profile'} />
-    }
-    
-    return  <div>
-                <h1>LOGIN</h1>
+            return (
                 <form onSubmit={formik.handleSubmit}>
                         <div>
                             <input value={formik.values.email} onChange={formik.handleChange} type = 'email' name='email' placeholder='Email'/><label>login</label>
@@ -42,9 +34,18 @@ const Login = (props) => {
                             <button type='submit'>Login</button>
                         </div>
                 </form>
+                )
+        }
+
+const Login = (props) => {
+    
+    const onSub = (formikData) => {
+        props.login (formikData.email, formikData.password, formikData.rememberMe)
+    }
+    return  <div>
+                <h1>LOGIN</h1>
+                <LoginForm onSub={onSub}/>
             </div>
         }
-const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
-})
-export default connect(mapStateToProps, {login})(Login)
+
+export default connect(null, {login})(Login)

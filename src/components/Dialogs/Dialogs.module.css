@@ -36,8 +36,10 @@ button {
     width: 75px;
 }
 
-/* 
+.formControl {
+    margin-bottom: 20px;
+}
 
-.message {
-
-} */
+.errors {
+    color: red;
+}

@@ -3,6 +3,7 @@ import { profileAPI, usersAPI } from "../api/api"
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
+const READ_ID = 'READ_ID'
 
 let initialState = {
     postData: [
@@ -11,39 +12,34 @@ let initialState = {
     {id: 3, message: 'azaza', likesCount: 101}
   ],
     profile: null,
-    status: ''}
+    status: '',
+    id: 2}
+    
 
 const profileReducer = (state = initialState, action) => {
     
     switch(action.type) {
         
-        case ADD_POST: 
-            return {...state, postData: [...state.postData, {id: 5, message: action.newPostText, likesCount: 23.34}], newPostText: ''}
+        case ADD_POST: return {...state, postData: [...state.postData, {id: 5, message: action.newPostText, likesCount: 23.34}], newPostText: ''}
              
-        case SET_USER_PROFILE: {
-            return {...state, profile: action.profile}
-        }
+        case SET_USER_PROFILE: return {...state, profile: action.profile}
         
-        case SET_STATUS: {
-            return {...state, status: action.status}
-        }
+        case SET_STATUS: return {...state, status: action.status}
+        
+        case READ_ID: return {...state, id: action.id}
         
         default:
             return state
     }
-
 }
 
 export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (status) => ({type: SET_STATUS, status})
-
-
-
+export const readId = (id) => ({type: READ_ID, id})
 
 export const getId = (userId) => { 
     return (dispatch) => {
-        if (!userId) {userId = 2}
         usersAPI.getId(userId)
         .then (data => {
             dispatch(setUserProfile(data))

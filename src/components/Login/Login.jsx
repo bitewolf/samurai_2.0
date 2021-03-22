@@ -1,39 +1,9 @@
-import { Formik, useFormik } from 'formik'
+import { useFormik } from 'formik'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { login } from '../../redux/auth-reducer'
-
-
-// const BasicExample = () => (
-//     <div>
-//       <h1>My Form</h1>
-//       <Formik
-//         initialValues={{ name: 'jared' }}
-//         onSubmit={(values, actions) => {
-//           setTimeout(() => {
-//             alert(JSON.stringify(values, null, 2))
-//             actions.setSubmitting(false)
-//             actions.setStatus()
-//             debugger
-//           }, 100);
-//         }}
-//       >
-//         {props => (
-//           <form onSubmit={props.handleSubmit}>
-//             <input
-//               type="text"
-//               onChange={props.handleChange}
-//               value={props.values.name}
-//               name="name"
-//             />
-//             {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-//             <button type="submit">Submit</button>
-//           </form>
-//         )}
-//       </Formik>
-//     </div>
-//   )
+import style from './Login.module.css'
 
 const Login = (props) => {
 
@@ -57,11 +27,11 @@ const Login = (props) => {
     }
     
     return  <div>
-                {/* <BasicExample/> */}
                 <h1>LOGIN</h1>
                 <form onSubmit={formik.handleSubmit}>
                         <div>
                             <input value={formik.values.email} onChange={formik.handleChange} type = 'email' name='email' placeholder='Email'/><label>login</label>
+                            {props.errorCod !== 0 ? <div className={style.error}>{props.errorName}</div> : null}
                         </div>
                         <div>
                             <input value={formik.values.password} onChange={formik.handleChange} type = 'password' name='password' placeholder='Password'/><label>password</label>
@@ -77,6 +47,8 @@ const Login = (props) => {
         }
         
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    errorCod: state.auth.errorCod,
+    errorName: state.auth.errorName
 })
 export default connect(mapStateToProps, {login})(Login)

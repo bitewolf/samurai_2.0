@@ -27,13 +27,14 @@ export const setAuthUserData = (userID, email, login, isAuth) => ({type: SET_USE
 export const setErrors = (errorCod, errorName) => ({type: SET_ERROR, payload: {errorCod, errorName}})
 
 export const getAuthUserData = () =>  dispatch => {
-        authAPI.me()    
+        return authAPI.me()    
         .then (data => {
                 if (data.resultCode === 0) {
                     let {id, email, login} = data.data
                     dispatch(setAuthUserData(id, email, login, true))
                 }               
             })
+     
     }
 
 export const login = (email, password, rememberMe) => dispatch => {

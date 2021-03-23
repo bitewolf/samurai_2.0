@@ -1,0 +1,18 @@
+<input type='file' id='photo'/>
+<button onclick='uploadPhoto()'>зааплоадить</button>
+
+<script>
+
+function uploadPhoto()
+{
+    var formData = new FormData()
+    var imageFile = document.querySelector('#photo')
+    formData.append('image', imagefile.file[0])
+    axiosInstance.post('profile/photo', formData, {
+        header: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }).then(res => console.log(res.data))
+}
+
+</script>

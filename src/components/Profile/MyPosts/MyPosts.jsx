@@ -66,7 +66,7 @@ import { Formik, useFormik } from 'formik'
 const MyPosts = React.memo((props) => {
 
 console.log('Render')
-let postsElements = props.postData.map ( p => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>)
+let postsElements = [...props.postData].reverse().map ( p => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>)
 
 const initialValues = {
     postText: 'new post'

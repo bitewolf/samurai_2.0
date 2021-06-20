@@ -29,7 +29,7 @@ const profileReducer = (state = initialState, action) => {
         
         case READ_ID: return {...state, id: action.id}
         
-        case DELETE_POST: return {...state, postData: state.postData.filter(p => p.id != action.postId)}
+        case DELETE_POST: return {...state, postData: state.postData.filter(p => p.id !== action.postId)}
         default:
             return state
     }
@@ -41,33 +41,23 @@ export const setStatus = (status) => ({type: SET_STATUS, status})
 export const readId = (id) => ({type: READ_ID, id})
 export const deletePost = (postId) => ({type: DELETE_POST, postId})
 
-export const getId = (userId) => { 
-    return (dispatch) => {
-        usersAPI.getId(userId)
-        .then (data => {
-            dispatch(setUserProfile(data))
-        })
+export const getId =  (userId) =>  async (dispatch) => {
+        const response = await usersAPI.getId(userId)
+            dispatch(setUserProfile(response.data))
     }
-}
 
-export const getStatus = (userId) => { 
-    return (dispatch) => {
-        profileAPI.getStatus(userId)
-        .then (data => {
-            dispatch(setStatus(data))
-        })
-    }
-}
 
-export const updateStatus = (status) => { 
-    return (dispatch) => {
-        profileAPI.updateStatus(status)
-        .then (data => {
-            if (data.resultCode === 0) {
-            dispatch(setStatus(status))
-        }
-        })
+export const getStatus = (userId) => async (dispatch) => {
+        const response = await profileAPI.getStatus(userId)
+            dispatch(setStatus(response.data))
     }
-}
+
+export const updateStatus = (status) => async (dispatch) => {
+        const response = await profileAPI.updateStatus(status)
+            if (response.data.resultCode === 0) {
+                dispatch(setStatus(status))
+            }  
+    }
+
 
 export default profileReducer

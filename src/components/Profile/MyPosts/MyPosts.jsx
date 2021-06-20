@@ -1,8 +1,8 @@
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
-import React, { PureComponent } from 'react'
+import React from 'react'
 import validate from './../../../utils/validators/validatorsJax'
-import { Formik, useFormik } from 'formik'
+import { useFormik } from 'formik'
 
 // class MyPosts extends PureComponent {
 

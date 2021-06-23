@@ -11,7 +11,6 @@ test('length of posts should be incremented', () => {
     //1. test data
     let action = addPostActionCreator("it-kamasutra.com")
 
-
     //2.action
     let newState = profileReducer(state, action)
 

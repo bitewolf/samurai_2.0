@@ -13,6 +13,10 @@ import { Component } from 'react'
 import { initializeApp } from './redux/app-reducer'
 import { connect } from 'react-redux'
 import Preloader from './components/Common/Preloader/Preloader'
+import store from './redux/redux-store'
+import { Provider } from 'react-redux'
+import React from 'react'
+
 
 
 class App extends Component {
@@ -49,4 +53,14 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, {initializeApp})(App)
+let AppContainer = connect(mapStateToProps, {initializeApp})(App)
+
+const SamuraiJSApp = (props) => {
+  return  <React.StrictMode>
+            <Provider store={store}>
+              <AppContainer />
+            </Provider>
+          </React.StrictMode>
+}
+
+export default SamuraiJSApp

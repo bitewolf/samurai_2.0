@@ -32,10 +32,11 @@ describe("ProfileStatus component", () => {
         expect(span.children[0]).toBe("it-kamasutra.com")
       })
     
-      test("input should be displayed in editMode instead of span", () => {
-        const component = create(<ProfileStatus status="it-kamasutra.com" updateStatus={ () => {} } />)
-        const instance = component.getInstance
+      test("callback should be called", () => {
+        const mockCallback = jest.fn()
+        const component = create(<ProfileStatus status="it-kamasutra.com" updateStatus={ mockCallback } />)
+        const instance = component.getInstance()
         instance.deactivateEditMode()
-        expect(input.props.value).toBe("it-kamasutra.com")
+        expect(mockCallback.mock.calls.length).toBe(1)
       })
   })

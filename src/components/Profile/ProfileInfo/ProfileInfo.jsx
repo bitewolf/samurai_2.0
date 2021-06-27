@@ -1,7 +1,6 @@
 import Preloader from "../../Common/Preloader/Preloader"
-// import ProfileStatus from "./ProfileStatus"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
-
+    
 const ProfileInfo = ({profile, status, updateStatus}) => {
 
     if (!profile) {
@@ -13,6 +12,7 @@ const ProfileInfo = ({profile, status, updateStatus}) => {
                 <span>{profile.aboutMe}</span><br></br>
                 <span>{profile.fullName}</span>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                
         </div>
     )
 }

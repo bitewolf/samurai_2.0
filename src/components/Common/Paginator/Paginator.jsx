@@ -12,19 +12,21 @@ let Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged, portion
     let [portionNumber, setPortionNumber] = useState(1)
     let leftPortionPageNumber = (portionNumber-1)*portionSize+1
     let rightPortionPageNumber = portionNumber*portionSize
+    debugger
 
 
 
 
+    return <div className={styles.paginator}>
+                {<button>&lt;&lt;</button>}
+                {portionNumber > 1 && <button onClick={()=>{setPortionNumber(portionNumber-1)}}>&lt;</button>}
 
-    return <div className={styles.usersPages}>
-                {portionNumber > 1 && <button onClick={()=>{setPortionNumber(portionNumber-1)}}>PREV</button>}
-                {pages
-                .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-                .map((p) => {
+                {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map((p) => {
                    return <span key={p} className={currentPage === p && styles.selectedPage} onClick={(e) => {onPageChanged(p)}}>{p}</span>
                 })}
-                {portionCount > portionNumber && <button onClick={()=>{setPortionNumber(portionNumber+1)}}>NEXT</button>}
+                
+                {portionCount > portionNumber && <button onClick={()=>{setPortionNumber(portionNumber+1)}}>&gt;</button>}
+                {<button>&gt;&gt;</button>}
             </div>
 }
 export default Paginator

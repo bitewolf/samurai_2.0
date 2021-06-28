@@ -6,6 +6,7 @@ const ProfileInfo = ({profile, status, updateStatus}) => {
     if (!profile) {
         return <Preloader />
     }
+
    return (
         <div>
                 <img src={profile.photos.large} alt="текст"></img><br></br>

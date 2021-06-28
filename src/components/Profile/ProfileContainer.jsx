@@ -18,8 +18,8 @@ class ProfileContainer extends React.Component {
         this.props.history.push("/login")
     }}
 
-    this.props.getId(this.props.userID)
-    this.props.getStatus(this.props.userID)
+    this.props.getId(userId)
+    this.props.getStatus(userId)
   }
 
   render () {

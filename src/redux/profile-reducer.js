@@ -43,18 +43,18 @@ export const deletePost = (postId) => ({type: DELETE_POST, postId})
 
 export const getId =  (userId) =>  async (dispatch) => {
         const response = await usersAPI.getId(userId)
-            dispatch(setUserProfile(response.data))
+            dispatch(setUserProfile(response))
     }
 
 
 export const getStatus = (userId) => async (dispatch) => {
         const response = await profileAPI.getStatus(userId)
-            dispatch(setStatus(response.data))
+            dispatch(setStatus(response))
     }
 
 export const updateStatus = (status) => async (dispatch) => {
         const response = await profileAPI.updateStatus(status)
-            if (response.data.resultCode === 0) {
+            if (response.resultCode === 0) {
                 dispatch(setStatus(status))
             }  
     }

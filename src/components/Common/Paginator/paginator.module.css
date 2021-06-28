@@ -19,3 +19,11 @@
 span {
     padding: 2px;
 }
+
+.paginatorButtons {
+    background-color: white;
+    border-radius: 3px;
+    border: solid 1px #999;
+    width: 28px;
+    margin-left: 2px;
+}

@@ -16,6 +16,6 @@ ul li {
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: bisque;
+  background-color: rgb(245, 245, 245);
 
 }
